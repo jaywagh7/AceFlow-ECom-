@@ -3,6 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 
+#new code
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.http import HttpResponse
+from .models import Order
+
 from core.models import Product, Post, Testimonial, Subscription, Team, Contact, Order, OrderItem, OrderBilling, \
     OrderShipping, Coupon
 
@@ -232,6 +238,20 @@ def coupon_view(request):
             return redirect(page)
         return redirect(page)
 
+
+#new code 
+def generate_receipt(request, order_id):
+    order = Order.objects.get(id=order_id)
+    template = get_template("receipt_template.html")
+    html = template.render({'order': order})
+    
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="receipt_{order.id}.pdf"'
+    
+    pisa_status = pisa.CreatePDF(html, dest=response)
+    if pisa_status.err:
+        return HttpResponse("Error generating receipt")
+    return response
 
 
 def thank_view(request):
