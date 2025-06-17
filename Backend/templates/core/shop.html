@@ -3,204 +3,242 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="Untree.co">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="/static/favicon.png">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="{% static 'css/tiny-slider.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
-  <meta name="description" content="" />
-  <meta name="keywords" content="bootstrap, bootstrap4" />
+  <title>Aseflow - India's First Liquid Protein Shot</title>
 
-		<!-- Bootstrap CSS -->
-		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-		<link href="{% static 'css/tiny-slider.css' %}" rel="stylesheet">
-		<link href="{% static 'css/style.css' %}" rel="stylesheet">
-		<title>Aseflow - India's First Liquid Protein Shot </title>
-	</head>
+<body>
 
-	<body>
+<!-- Header / Navbar -->
+<nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">Aseflow Wellness<span>.</span></a>
 
-		<!-- Start Header/Navigation -->
-		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-			<div class="container">
-				<a class="navbar-brand" href="{% url 'home' %}">Aseflow Wellness<span>.</span></a>
+    <div class="collapse navbar-collapse" id="navbarsFurni">
+      <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item active"><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
+        <li><a class="nav-link" href="{% url 'about' %}">About us</a></li>
+        <li><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+        <li><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
+        <li><a class="nav-link" href="{% url 'contact' %}">Contact us</a></li>
+      </ul>
 
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+      <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+        <li><a class="nav-link" href="{% if request.user.username %}{% url 'logout' %}{% else %}{% url 'login' %}{% endif %}">
+          <img src="{% static 'images/user.svg' %}"></a></li>
+        <li><a class="nav-link" href="{% url 'cart' %}"><img src="{% static 'images/cart.svg' %}"></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-				<div class="collapse navbar-collapse" id="navbarsFurni">
-					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-						<li class="nav-item ">
-							<a class="nav-link" href="{% url 'home' %}">Home</a>
-						</li>
-						<li class="active"><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
-						<li><a class="nav-link" href="{% url 'about' %}">About us</a></li>
-						<li><a class="nav-link" href="{% url 'services' %}">Services</a></li>
-						<li><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
-						<li><a class="nav-link" href="{% url 'contact' %}">Contact us</a></li>
-					</ul>
+<!-- Hero Section -->
+<div class="hero">
+  <section class="hero-section position-relative text-white text-center d-flex align-items-center justify-content-center">
+  <div class="hero-overlay"></div>
+  <div class="container position-relative z-2">
+    <h1 class="display-4 fw-bold mb-3">Fuel Your Fitness Journey</h1>
+    <p class="lead mb-4">Explore India's First Liquid Protein Shots – Fast, Clean, Effective.</p>
+    <a href="#products" class="btn btn-lg btn-primary px-4 py-2">Shop Now</a>
+  </div>
+</section>
+</div>
 
-					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="{% if request.user.username %} {% url 'logout' %} {% else %} {% url 'login' %} {% endif %}"><img src="{% static 'images/user.svg' %}"></a></li>
-						<li><a class="nav-link" href="{% url 'cart' %}"><img src="{% static 'images/cart.svg' %}"></a></li>
-					</ul>
-				</div>
-			</div>
-				
-		</nav>
-		<!-- End Header/Navigation -->
+<!-- Product Section -->
+<div class="untree_co-section product-section before-footer-section">
+  <div class="container">
+    <div class="row">
+      {% for product in products %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
+          <a class="product-item w-100" href="{% url 'cart' %}?product_id={{ product.id }}&action=plus">
+            <img src="{{ product.image.url }}" class="img-fluid product-thumbnail">
+            <h3 class="product-title">{{ product.name }}</h3>
+            <strong class="product-price">₹{{ product.price }}</strong>
+            <span class="icon-cross">
+              <img src="{% static 'images/cross.svg' %}" class="img-fluid">
+            </span>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
-		<!-- Start Hero Section -->
-			<div class="hero">
-				<div class="container">
-					<div class="row justify-content-between">
-						<div class="col-lg-5">
-							<div class="intro-excerpt">
-								<h1>Shop</h1>
-							</div>
-						</div>
-						<div class="col-lg-7">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		<!-- End Hero Section -->
+<!-- Footer Section -->
+<footer class="footer-section">
+  <div class="container relative">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="subscription-form">
+          <h3 class="d-flex align-items-center">
+            <span class="me-1"><img src="{% static 'images/envelope-outline.svg' %}" alt="Image" class="img-fluid"></span>
+            <span>Subscribe to Newsletter</span>
+          </h3>
+          <form action="{% url 'home' %}?page=shop" class="row g-3" method="post">
+            {% csrf_token %}
+            <div class="col-auto"><input type="text" class="form-control" placeholder="Enter your name" name="name"></div>
+            <div class="col-auto"><input type="email" class="form-control" placeholder="Enter your email" name="email"></div>
+            <div class="col-auto"><button class="btn btn-primary" type="submit"><span class="fa fa-paper-plane"></span></button></div>
+          </form>
+        </div>
+      </div>
+    </div>
 
-		
+    <div class="row g-5 mb-5">
+      <div class="col-lg-4">
+        <div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Aseflow Wellness<span>.</span></a></div>
+        <p class="mb-4"><strong>Marine Protein -</strong> Sourced from premium marine sources for fast absorption.</p>
+        <p class="mb-4"><strong>Vegan Protein -</strong> Complete plant-based nutrition in a convenient shot.</p>
+        <ul class="list-unstyled custom-social">
+          <li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+          <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+          <li><a href="#"><span class="fa fa-instagram"></span></a></li>
+          <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+        </ul>
+      </div>
 
-		<div class="untree_co-section product-section before-footer-section">
-		    <div class="container">
-		      	<div class="row">
-                    {% for product in products %}
-                    			      		<!-- Start Column 1 -->
-					<div class="col-12 col-md-4 col-lg-3 mb-5">
-						<a class="product-item" href="{% url 'cart' %}?product_id={{ product.id }}&action=plus">
-							<img src="{{ product.image.url }}" class="img-fluid product-thumbnail">
-							<h3 class="product-title">{{ product.name }}</h3>
-							<strong class="product-price">₹{{ product.price }}</strong>
+      <div class="col-lg-8">
+        <div class="row links-wrap">
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+          </div>
 
-							<span class="icon-cross">
-								<img src="{% static 'images/cross.svg' %}" class="img-fluid">
-							</span>
-						</a>
-					</div>
-					<!-- End Column 1 -->
-                    {% endfor %}
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li><a href="#">Support</a></li>
+              <li><a href="#">Knowledge base</a></li>
+              <li><a href="#">Live chat</a></li>
+            </ul>
+          </div>
 
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li><a href="#">Jobs</a></li>
+              <li><a href="#">Our team</a></li>
+              <li><a href="#">Leadership</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
 
+        </div>
+      </div>
+    </div>
 
-		      	</div>
-		    </div>
-		</div>
+    <div class="border-top copyright">
+      <div class="row pt-4">
+        <div class="col-lg-6">
+          <p class="mb-2 text-center text-lg-start">Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> — Aseflow. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/tiny-slider.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<style>
+    .hero {
+      background-color: #f8f9fa;
+      padding: 80px 0;
+      text-align: center;
+    }
+	.hero-section {
+  height: 70vh;
+  background: url('{% static "images/shop-hero-bg.jpg" %}') center center/cover no-repeat;
+  position: relative;
+  z-index: 1;
+}
 
-		<!-- Start Footer Section -->
-		<footer class="footer-section">
-			<div class="container relative">
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
 
-				
+.hero-section .container {
+  z-index: 2;
+}
 
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="subscription-form">
-							<h3 class="d-flex align-items-center"><span class="me-1"><img src="{% static 'images/envelope-outline.svg' %}" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
+.hero-section h1,
+.hero-section p {
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
 
-							<form action="{% url 'home' %}?page=shop" class="row g-3" method="post">
-                                {% csrf_token %}
-								<div class="col-auto">
-									<input type="text" class="form-control" placeholder="Enter your name" name="name">
-								</div>
-								<div class="col-auto">
-									<input type="email" class="form-control" placeholder="Enter your email" name="email">
-								</div>
-								<div class="col-auto">
-									<button class="btn btn-primary" type="submit">
-										<span class="fa fa-paper-plane"></span>
-									</button>
-								</div>
-							</form>
+.hero-section .btn-primary {
+  background-color: #f9bf29;;
+  border: none;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: 0.3s ease;
+}
 
-						</div>
-					</div>
-				</div>
+.hero-section .btn-primary:hover {
+  background-color: #f9bf29;;
+}
+    .product-item {
+      display: block;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      height: 100%;
+    }
+    .product-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 15px;
+      color: #212529;
+    }
+    .product-price {
+      font-size: 1rem;
+      color: #28a745;
+      font-weight: 500;
+      margin-top: 8px;
+      display: block;
+    }
+    .icon-cross img {
+      width: 28px;
+      margin-top: 15px;
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+    .icon-cross img:hover {
+      opacity: 1;
+    }
+    .product-thumbnail {
+      border-radius: 10px;
+      max-height: 200px;
+      object-fit: contain;
+    }
+  </style>
+</head>
 
-
-				<div class="row g-5 mb-5">
-					<div class="col-lg-4">
-						<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Aseflow Wellness<span>.</span></a></div>
-						<p class="mb-4"> <strong>Marine Protein -</strong> Sourced from premium marine sources, our marine protein shot delivers high bioavailability protein that's easily absorbed by your body.</p>
-						<p class="mb-4"> <strong>Vegan Protein -</strong> Our plant-based protein shot combines multiple vegan protein sources to create a complete amino acid profile in a convenient shot.</p>
-
-
-						<ul class="list-unstyled custom-social">
-							<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
-						</ul>
-					</div>
-
-					<div class="col-lg-8">
-						<div class="row links-wrap">
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">About us</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">Blog</a></li>
-									<li><a href="#">Contact us</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Support</a></li>
-									<li><a href="#">Knowledge base</a></li>
-									<li><a href="#">Live chat</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Jobs</a></li>
-									<li><a href="#">Our team</a></li>
-									<li><a href="#">Leadership</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-								</ul>
-							</div>
-
-							
-						</div>
-					</div>
-
-				</div>
-
-				<div class="border-top copyright">
-					<div class="row pt-4">
-						<div class="col-lg-6">
-							<p class="mb-2 text-center text-lg-start">Copyright &copy; <script>document.write(new Date().getFullYear());</script> &mdash; Aseflow. All rights reserved.</p></p>
-						</div>
-
-						<div class="col-lg-6 text-center text-lg-end">
-							<!-- <ul class="list-unstyled d-inline-flex ms-auto">
-								<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-							</ul> -->
-						</div>
-
-					</div>
-				</div>
-
-			</div>
-		</footer>
-		<!-- End Footer Section -->	
-
-
-		<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-		<script src="{% static 'js/tiny-slider.js' %}"></script>
-		<script src="{% static 'js/custom.js' %}"></script>
-	</body>
-
+</body>
 </html>

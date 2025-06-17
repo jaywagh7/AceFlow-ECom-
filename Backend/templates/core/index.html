@@ -175,7 +175,7 @@
 
 					<div class="col-lg-5">
 						<div class="img-wrap">
-							<!-- <img src="{%  static 'images/why-choose-us-img.jpg' %}" alt="Image" class="img-fluid"> -->
+							<img src="{%  static 'images/comming soon.jpg' %}" alt="Image" class="img-fluid">
 						</div>
 					</div>
 
@@ -428,5 +428,96 @@
 		<script src="{% static  'js/tiny-slider.js' %}"></script>
 		<script src="{% static  'js/custom.js' %}"></script>
 	</body>
+	
+<style>/* Why Choose Us Section */
+.why-choose-section {
+  padding: 6rem 0;
+  background-color: #f8f9fa;
+}
 
+.why-choose-section .section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.why-choose-section p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+}
+
+.img-wrap img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.feature .icon {
+  width: 60px;
+  height: 60px;
+  background-color: #eef4f3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.feature .icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.feature h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.feature p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Responsive Fix */
+@media (max-width: 992px) {
+  .why-choose-section .img-wrap {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-choose-section {
+    padding: 4rem 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .feature {
+    padding: 20px;
+  }
+}
+
+
+</style>
 </html>
