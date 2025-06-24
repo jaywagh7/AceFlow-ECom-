@@ -57,15 +57,18 @@
 
 		<!-- Start Hero Section -->
 			<div class="hero">
+
 				<div class="container">
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
-								<h1>Aseflow<span clsas="d-block"> India's First Liquid Protein Shot </span></h1>
+								<h1>Rip it. Sip it. Repeat...</h1>
+								<h3><span clsas="d-block"> <br> India’s First Liquid Protein Shot
+</span></h3>
 								<!-- <p class="mb-4">India's First Liquid Protein Shot</p> -->
 								<p><i class="fas fa-vial"></i> 40ml Shot &bull; <strong>25g Protein</strong></p>
             <p><i class="fas fa-leaf"></i> Marine & Vegan Options Available</p>
-								<p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+								<p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Try the Trial Pack Now</a></p>
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -79,47 +82,51 @@
 		<!-- End Hero Section -->
 
 		<!-- Start Product Section -->
-		<div class="product-section">
-			<div class="container">
-				<div class="row">
+<div class="product-section">
+  <div class="container">
+    <div class="row">
 
-					<!-- Start Column 1 -->
-					<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-						<h2 class="mb-4 section-title">What is Aseflow?</h2>
-						<p class="mb-4">Aseflow is India's first liquid protein shot that delivers a powerful 25g of protein in just a convenient 40ml shot. </p>
-						<ul class="product-features">
-							<li>✓ 25g Protein Per Shot</li>
-							<li>✓ Sugar Free</li>
-							<li>✓ No Mixing Required</li>
-							<li>✓ On-The-Go Convenience</li>
-							<li>✓ Marine & Vegan Options</li>
-						  </ul>
-						<p><a href="{% url 'shop' %}" class="btn">Explore</a></p>
-					</div>
-					<!-- End Column 1 -->
+      <!-- Start Column 1 -->
+      <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+        <h2 class="mb-4 section-title">Why Choose Aseflow?</h2>
+        <p class="mb-4">Aseflow is a revolutionary ready-to-drink protein shot designed for fitness, recovery, and everyday nutrition — anytime, anywhere.</p>
+        <ul class="product-features">
+          <li>✓ 25g+ Protein Per Sachet</li>
+          <li>✓ No Water or Mixing Needed</li>
+          <li>✓ Hassle-Free & Convenient</li>
+          <li>✓ Perfect for Active Lifestyles</li>
+          <li>✓ Available in Marine & Vegan</li>
+        </ul>
+        <p class="mb-2"><strong>Full Pack:</strong> ₹2499 (24 sachets)</p>
+        <p class="mb-4"><strong>Trial Pack:</strong> ₹599 (5 sachets)</p>
+        <p>
+          <a href="{% url 'shop' %}" class="btn">Buy Now</a>
+          <a href="{% url 'shop' %}" class="btn btn-outline-dark ms-2">Try Trial Pack</a>
+          <!-- <a href="{% url 'about' %}" class="btn btn-link">Know More</a> -->
+        </p>
+      </div>
+      <!-- End Column 1 -->
 
-					<!-- Start Column 2 -->
-                        {% for product in products %}
+      <!-- Start Column 2 -->
+      {% for product in products %}
+      <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+        <a class="product-item" href="{% url 'cart' %}?product_id={{ product.id }}&action=plus">
+          <img src="{{ product.image.url }}" class="img-fluid product-thumbnail">
+          <h3 class="product-title">{{ product.name }}</h3>
+          <strong class="product-price">₹{{ product.price }}</strong>
+          <span class="icon-cross">
+            <img src="{% static 'images/cross.svg' %}" class="img-fluid">
+          </span>
+        </a>
+      </div>
+      {% endfor %}
+      <!-- End Column 2 -->
 
-					        <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a class="product-item" href="{% url 'cart' %}?product_id={{ product.id }}&action=plus">
-							<img src="{{ product.image.url }}" class="img-fluid product-thumbnail">
-							<h3 class="product-title">{{ product.name }}</h3>
-							<strong class="product-price">₹{{ product.price }}</strong>
+    </div>
+  </div>
+</div>
+<!-- End Product Section -->
 
-							<span class="icon-cross">
-								<img src="{% static 'images/cross.svg' %}" class="img-fluid">
-							</span>
-						</a>
-
-
-					</div>
-                        {% endfor %}
-
-				</div>
-			</div>
-		</div>
-		<!-- End Product Section -->
 
 		<!-- Start Why Choose Us Section -->
 		<div class="why-choose-section">
@@ -213,7 +220,7 @@
 		<!-- End We Help Section -->
 
 		<!-- Start Popular Product -->
-		<div class="popular-product">
+		<!-- <div class="popular-product">
 			<div class="container">
 				<div class="row">
                     {% for product in products %}
@@ -227,7 +234,7 @@
 								<p>{{ product.short_description }}</p>
 								
 								
-{#								<p><a href="#">Read More</a></p>#}
+{								<p><a href="#">Read More</a></p>}
 							</div>
 						</div>
 					</div>
@@ -235,62 +242,71 @@
 
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- End Popular Product -->
 
 		<!-- Start Testimonial Slider -->
-		<div class="testimonial-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-7 mx-auto text-center">
-						<h2 class="section-title">Testimonials</h2>
-					</div>
-				</div>
+<div class="testimonial-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mx-auto text-center">
+        <h2 class="section-title">Testimonials</h2>
+      </div>
+    </div>
 
-				<div class="row justify-content-center">
-					<div class="col-lg-12">
-						<div class="testimonial-slider-wrap text-center">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="testimonial-slider-wrap text-center">
 
-							<div id="testimonial-nav">
-								<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
-								<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
-							</div>
+          <div id="testimonial-nav">
+            <span class="prev" data-controls="prev">
+              <span class="fa fa-chevron-left"></span>
+            </span>
+            <span class="next" data-controls="next">
+              <span class="fa fa-chevron-right"></span>
+            </span>
+          </div>
 
-							<div class="testimonial-slider">
-								{% for testimonial in testimonials %}
-								    <div class="item">
-									<div class="row justify-content-center">
-										<div class="col-lg-8 mx-auto">
+          <div class="testimonial-slider">
+            {% for testimonial in testimonials %}
+              <div class="item">
+                <div class="row justify-content-center">
+                  <div class="col-lg-8 mx-auto">
+                    <div class="testimonial-block text-center">
+                      <blockquote class="mb-5">
+                        <p>&ldquo;{{ testimonial.review }}&rdquo;</p>
+                      </blockquote>
 
-											<div class="testimonial-block text-center">
-												<blockquote class="mb-5">
-													<p>&ldquo;{{ testimonial.review }}&rdquo;</p>
-												</blockquote>
+                      <div class="author-info">
+                        <div class="author-pic mb-3">
+                          {% if testimonial.image %}
+                            <img src="{{ testimonial.image.url }}" alt="{{ testimonial.user.get_full_name }}" class="img-fluid">
+                          {% else %}
+                            <img src="{% static 'images/default-profile.png' %}" alt="Default Image" class="img-fluid">
+                          {% endif %}
+                        </div>
+                        <h3 class="font-weight-bold mb-1">
+                          {{ testimonial.user.username }} {{ testimonial.user.last_name }}
+                        </h3>
+                        <span class="position d-block text-muted">
+                          {{ testimonial.job }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- END item -->
+          </div>
 
-												<div class="author-info">
-													<div class="author-pic">
-														<img src="{{ testimonial.image.url }}" alt="Maria Jones" class="img-fluid">
-													</div>
-													<h3 class="font-weight-bold">{{ testimonial.user.first_name }} {{ testimonial.user.last_name }}</h3>
-													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-												</div>
-											</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Testimonial Slider -->
 
-										</div>
-									</div>
-								</div>
-								{% endfor %}
-
-								<!-- END item -->
-
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Testimonial Slider -->
 
 		<!-- Start Blog Section -->
 		<div class="blog-section">

@@ -64,7 +64,7 @@ a {
         bottom: 0;
         left: 8px;
         right: 8px;
-        background: #f9bf29;
+        background:#abe7e9;
         height: 5px;
         opacity: 1;
         visibility: visible;
@@ -96,14 +96,14 @@ a {
         margin-right: 20px; }
 
 .hero {
-  background-image: url("/media/bg1.jpeg");
+  background-image: url("/media/bg1.jpg");
   padding: calc(4rem - 30px) 0 0rem 0; }
   @media (min-width: 768px) {
     .hero {
       padding: calc(4rem - 30px) 0 4rem 0; } }
   @media (min-width: 992px) {
     .hero {
-      padding: calc(8rem - 30px) 0 8rem 0; } }
+      padding: calc(12rem - 30px) 0 14rem 0; } }
   .hero .intro-excerpt {
     position: relative;
     z-index: 4; }
@@ -111,9 +111,12 @@ a {
       .hero .intro-excerpt {
         max-width: 450px; } }
   .hero h1 {
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 30px; }
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: -23px;
+  white-space: nowrap; /* 👈 this forces the text to stay on one line */
+}
+
     @media (min-width: 1400px) {
       .hero h1 {
         font-size: 54px; } }
@@ -181,11 +184,11 @@ a {
       border-color: #314d43; }
   .btn.btn-secondary {
     color: #2f2f2f;
-    background: #f9bf29;
-    border-color: #f9bf29; }
+    background: #abe7e9;
+    border-color: #abe7e9 }
     .btn.btn-secondary:hover {
-      background: #f8b810;
-      border-color: #f8b810; }
+      /* background: #f8b810; */
+      border-color: #abe7e9; }
   .btn.btn-white-outline {
     background: transparent;
     border-width: 2px;
@@ -197,79 +200,198 @@ a {
 .section-title {
   color: #2f2f2f; }
 
+/* Base: Product Section */
 .product-section {
-  padding: 7rem 0; }
+  background-image: url("/media/bg2.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 7rem 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Left Column Title & Description */
+.product-section .section-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1d1d1d;
+}
+
+.product-section p {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Feature List */
+.product-section .product-features {
+  padding-left: 1.2rem;
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.product-section .product-features li {
+  margin-bottom: 10px;
+  font-size: 14.5px;
+  color: #2f2f2f;
+  position: relative;
+  padding-left: 20px;
+}
+
+.product-section .product-features li::before {
+  content: "✔️";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #4CAF50;
+  font-size: 14px;
+}
+
+/* Product Cards */
+.product-section .product-item {
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  padding-bottom: 50px;
+  cursor: pointer;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.product-section .product-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.product-section .product-item .product-thumbnail {
+  margin-bottom: 30px;
+  max-height: 220px;
+  object-fit: contain;
+  transition: 0.3s all ease;
+}
+
+.product-section .product-item h3 {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #2f2f2f;
+}
+
+.product-section .product-item strong {
+  font-weight: 800 !important;
+  font-size: 18px !important;
+  color: #2f2f2f;
+}
+
+.product-section .product-item .icon-cross {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  background: #2f2f2f;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: -17.5px;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s all ease;
+}
+
+.product-section .product-item .icon-cross img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.product-section .product-item:before {
+  content: "";
+  background: #dce5e4;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0%;
+  z-index: -1;
+  border-radius: 10px;
+  transition: .3s all ease;
+}
+
+.product-section .product-item:hover .product-thumbnail {
+  top: -25px;
+}
+
+.product-section .product-item:hover .icon-cross {
+  bottom: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+.product-section .product-item:hover:before {
+  height: 70%;
+}
+
+/* CTA Buttons */
+.product-section .btn {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.product-section .btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.product-section .btn.btn-outline-dark {
+  background: transparent;
+  border: 2px solid #000;
+  color: #000;
+}
+
+.product-section .btn.btn-outline-dark:hover {
+  background: #000;
+  color: #fff;
+}
+
+.product-section .btn.btn-link {
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+}
+
+.product-section .btn.btn-link:hover {
+  background-color: #555;
+  text-decoration: none;
+}
+
+/* Responsive Fixes */
+@media (max-width: 991.98px) {
   .product-section .product-item {
-    text-align: center;
-    text-decoration: none;
+    margin-bottom: 2rem;
+  }
+  .product-section .btn {
     display: block;
-    position: relative;
-    padding-bottom: 50px;
-    cursor: pointer; }
-    .product-section .product-item .product-thumbnail {
-      margin-bottom: 30px;
-      position: relative;
-      top: 0;
-      -webkit-transition: .3s all ease;
-      -o-transition: .3s all ease;
-      transition: .3s all ease; }
-    .product-section .product-item h3 {
-      font-weight: 600;
-      font-size: 16px; }
-    .product-section .product-item strong {
-      font-weight: 800 !important;
-      font-size: 18px !important; }
-    .product-section .product-item h3, .product-section .product-item strong {
-      color: #2f2f2f;
-      text-decoration: none; }
-    .product-section .product-item .icon-cross {
-      position: absolute;
-      width: 35px;
-      height: 35px;
-      display: inline-block;
-      background: #2f2f2f;
-      bottom: 15px;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      transform: translateX(-50%);
-      margin-bottom: -17.5px;
-      border-radius: 50%;
-      opacity: 0;
-      visibility: hidden;
-      -webkit-transition: .3s all ease;
-      -o-transition: .3s all ease;
-      transition: .3s all ease; }
-      .product-section .product-item .icon-cross img {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%); }
-    .product-section .product-item:before {
-      bottom: 0;
-      left: 0;
-      right: 0;
-      position: absolute;
-      content: "";
-      background: #dce5e4;
-      height: 0%;
-      z-index: -1;
-      border-radius: 10px;
-      -webkit-transition: .3s all ease;
-      -o-transition: .3s all ease;
-      transition: .3s all ease; }
-    .product-section .product-item:hover .product-thumbnail {
-      top: -25px; }
-    .product-section .product-item:hover .icon-cross {
-      bottom: 0;
-      opacity: 1;
-      visibility: visible; }
-    .product-section .product-item:hover:before {
-      height: 70%; }
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
 
 .why-choose-section {
+  background-image: url("/media/bg2.jpg");
   padding: 7rem 0; }
   .why-choose-section .img-wrap {
     position: relative; }
@@ -312,6 +434,7 @@ a {
     color: #6a6a6a; }
 
 .we-help-section {
+  background-image: url("/media/bg2.jpg");
   padding: 7rem 0; }
  .we-help-section .imgs-grid {
   display: -ms-grid;
@@ -420,6 +543,7 @@ a {
       z-index: -1; }
 
 .testimonial-section {
+  background-image: url("/media/bg3.jpg");
   padding: 3rem 0 7rem 0; }
 
 .testimonial-slider-wrap {
@@ -510,6 +634,7 @@ a {
   padding: 7rem 0 12rem 0 !important; }
 
 .blog-section {
+   background-image: url("/media/bg2.jpg");
   padding: 7rem 0 12rem 0; }
   .blog-section .post-entry a {
     text-decoration: none; }
