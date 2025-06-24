@@ -18,11 +18,14 @@ class Product(models.Model):
 
 class Testimonial(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='testimonials')
+    first_name = models.CharField(max_length=50, blank=True, default='')  # allow blank + default
+    last_name  = models.CharField(max_length=50, blank=True, default='')  # allow blank + default
     job = models.CharField(max_length=50)
     review = models.TextField()
     image = models.ImageField(upload_to='testimonials/', null=True, blank=True)
+
     def __str__(self):
-        return f"{self.id} {self.user.username}"
+        return f"{self.first_name} {self.last_name} ({self.user.username})"
 
 class Post(models.Model):
     title = models.CharField(max_length=255)

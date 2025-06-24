@@ -52,17 +52,26 @@ class PostAdmin(admin.ModelAdmin):
 class TestimonialAdmin(admin.ModelAdmin):
     list_display = (
         "user",
+        "first_name",
+        "last_name",
         "job",
         "testimonial_image",
     )
     list_filter = (
         "job",
     )
+    search_fields = (
+        "first_name",
+        "last_name",
+        "user__username",
+        "job",
+    )
 
     def testimonial_image(self, obj):
         if obj.image:
-            return html.format_html("<img width=40 height=40 src='{}'>", obj.image.url)
-        return ""
+            return html.format_html("<img src='{}' width='40' height='40' style='border-radius: 50%; object-fit: cover;'>", obj.image.url)
+        return "-"
+    testimonial_image.short_description = "Image"
 
 
 # Team Admin
