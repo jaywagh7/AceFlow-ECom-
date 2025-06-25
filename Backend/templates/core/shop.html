@@ -54,16 +54,17 @@
 </section>
 </div>
 
-<!-- Product Section -->
+<!-- Product Section --> 
 <div class="untree_co-section product-section before-footer-section">
   <div class="container">
-    <div class="row">
+    <!-- Added justify-content-center to center the items -->
+    <div class="row justify-content-center">
       {% for product in products %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex justify-content-center">
           <a class="product-item w-100" href="{% url 'cart' %}?product_id={{ product.id }}&action=plus">
             <img src="{{ product.image.url }}" class="img-fluid product-thumbnail">
-            <h3 class="product-title">{{ product.name }}</h3>
-            <strong class="product-price">₹{{ product.price }}</strong>
+            <h3 class="product-title text-center">{{ product.name }}</h3>
+            <strong class="product-price text-center">₹{{ product.price }}</strong>
             <span class="icon-cross">
               <img src="{% static 'images/cross.svg' %}" class="img-fluid">
             </span>
@@ -73,6 +74,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- Footer Section -->
 <footer class="footer-section">
@@ -168,9 +170,9 @@
 
 .hero-overlay {
   position: absolute;
-  top: 0; left: 0;
+  top: -80; left: 0;
   width: 100%;
-  height: 100%;
+  height: 133%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
@@ -186,19 +188,23 @@
 }
 
 .hero-section .btn-primary {
-  background-color: #f9bf29;;
-  border: none;
+  background-color: transparent;
+  color: #abe7e9;
+  border: 2px solid #abe7e9;
   font-weight: 600;
   border-radius: 30px;
-  transition: 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+
 .hero-section .btn-primary:hover {
-  background-color: #f9bf29;;
+  background-color: #abe7e9;
+  color: #050a0e;  /* Same as background, so it looks transparent */
+  border-color: #abe7e9;
 }
     .product-item {
       display: block;
-      background: #ffffff;
+      background: transparent;
       border-radius: 12px;
       padding: 20px;
       text-align: center;
